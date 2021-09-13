@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+-<edmx:Edmx xmlns:sap="http://www.sap.com/Protocols/SAPData" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+
+
+-<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='SAPS4')/$value">
+
+<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+
+</edmx:Reference>
+
+
+-<edmx:DataServices m:DataServiceVersion="2.0">
+
+
+-<Schema xml:lang="en" Namespace="ZQUERY_TEST_ALP_CDS" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" sap:schema-version="1">
+
+
+-<EntityType sap:content-version="1" sap:semantics="aggregate" sap:label="Query ALP test" Name="ZQUERY_TEST_ALPType">
+
+
+-<Key>
+
+<PropertyRef Name="ID"/>
+
+</Key>
+
+<Property Name="ID" sap:sortable="false" sap:updatable="false" sap:filterable="false" Nullable="false" Type="Edm.String"/>
+
+<Property Name="TotaledProperties" sap:sortable="false" sap:updatable="false" Type="Edm.String" sap:is-annotation="true" sap:aggregation-role="totaled-properties-list"/>
+
+<Property sap:semantics="currency-code" sap:label="Currency" Name="EstimatedShippingCostCurrency" sap:updatable="false" Type="Edm.String" sap:aggregation-role="dimension" sap:value-list="standard" sap:creatable="false" MaxLength="5"/>
+
+<Property sap:label="Delivery" Name="ExecutionOrder" sap:updatable="false" Type="Edm.String" sap:aggregation-role="dimension" sap:creatable="false" MaxLength="10"/>
+
+<Property sap:label="Legacy Location Code" Name="FromLocation" sap:updatable="false" Type="Edm.String" sap:aggregation-role="dimension" sap:creatable="false" MaxLength="40"/>
+
+<Property sap:label="Sequence" Name="SequenceNo" sap:updatable="false" Type="Edm.String" sap:aggregation-role="dimension" sap:creatable="false" MaxLength="6"/>
+
+<Property sap:label="Source Name" Name="Source" sap:updatable="false" Type="Edm.String" sap:aggregation-role="dimension" sap:creatable="false" MaxLength="20"/>
+
+<Property sap:label="Purchase Requisition" Name="STRNumber" sap:updatable="false" Type="Edm.String" sap:aggregation-role="dimension" sap:creatable="false" MaxLength="10"/>
+
+<Property sap:label="Legacy Location Code" Name="ToLocation" sap:updatable="false" Type="Edm.String" sap:aggregation-role="dimension" sap:creatable="false" MaxLength="40"/>
+
+<Property sap:label="Purchasing Document" Name="STONumber" sap:updatable="false" Type="Edm.String" sap:aggregation-role="dimension" sap:value-list="standard" sap:creatable="false" MaxLength="10"/>
+
+<Property sap:label="Amount" Name="EstimatedShippingCost" sap:updatable="false" sap:filterable="false" Type="Edm.Decimal" sap:aggregation-role="measure" sap:creatable="false" sap:text="EstimatedShippingCost_F" Scale="9" Precision="42"/>
+
+<Property sap:label="Amount (Formatted)" Name="EstimatedShippingCost_F" sap:updatable="false" sap:filterable="false" Type="Edm.String" sap:creatable="false" MaxLength="60"/>
+
+</EntityType>
+
+
+-<EntityType sap:content-version="1" sap:label="Currency (Master Data)" Name="EstimatedShippingCostCurrency" sap:value-list="true">
+
+
+-<Key>
+
+<PropertyRef Name="EstimatedShippingCostCurrency_ID"/>
+
+</Key>
+
+<Property sap:label="Currency" Name="EstimatedShippingCostCurrency_ID" sap:sortable="false" sap:updatable="false" Nullable="false" Type="Edm.String" sap:creatable="false" MaxLength="5" sap:text="EstimatedShippingCostCurrencyText"/>
+
+<Property sap:label="Currency (Description)" Name="EstimatedShippingCostCurrencyText" sap:sortable="false" sap:updatable="false" Type="Edm.String" sap:creatable="false"/>
+
+</EntityType>
+
+
+-<EntityType sap:content-version="1" sap:label="Purchasing Document (Master Data)" Name="STONumber" sap:value-list="true">
+
+
+-<Key>
+
+<PropertyRef Name="STONumber_ID"/>
+
+</Key>
+
+<Property sap:label="Purchasing Document" Name="STONumber_ID" sap:sortable="false" sap:updatable="false" Nullable="false" Type="Edm.String" sap:creatable="false" MaxLength="10" sap:text="STONumberText"/>
+
+<Property sap:label="Purchasing Document (Description)" Name="STONumberText" sap:sortable="false" sap:updatable="false" sap:filterable="false" Type="Edm.String" sap:creatable="false"/>
+
+</EntityType>
+
+
+-<EntityType sap:content-version="1" Name="ODataQueryAdditionalMetadata">
+
+
+-<Key>
+
+<PropertyRef Name="ODataQueryMetadata"/>
+
+</Key>
+
+<Property Name="ODataQueryMetadata" sap:sortable="false" sap:updatable="false" sap:filterable="false" Nullable="false" Type="Edm.String" sap:creatable="false"/>
+
+<Property Name="ODataQueryMetadataValue_Current" sap:sortable="false" sap:updatable="false" sap:filterable="false" Type="Edm.String" sap:creatable="false"/>
+
+<Property Name="ODataQueryMetadataValueAtDefine" sap:sortable="false" sap:updatable="false" sap:filterable="false" Type="Edm.String" sap:creatable="false"/>
+
+</EntityType>
+
+
+-<EntityContainer Name="ZQUERY_TEST_ALP_CDS_Entities" sap:supported-formats="atom json xlsx" m:IsDefaultEntityContainer="true">
+
+<EntitySet sap:content-version="1" Name="ZQUERY_TEST_ALP" sap:updatable="false" sap:creatable="false" sap:deletable="false" EntityType="ZQUERY_TEST_ALP_CDS.ZQUERY_TEST_ALPType"/>
+
+<EntitySet sap:content-version="1" Name="EstimatedShippingCostCurrency" sap:updatable="false" sap:creatable="false" sap:deletable="false" EntityType="ZQUERY_TEST_ALP_CDS.EstimatedShippingCostCurrency"/>
+
+<EntitySet sap:content-version="1" Name="STONumber" sap:updatable="false" sap:creatable="false" sap:deletable="false" EntityType="ZQUERY_TEST_ALP_CDS.STONumber"/>
+
+<EntitySet sap:content-version="1" Name="AdditionalMetadata" sap:updatable="false" sap:creatable="false" sap:deletable="false" EntityType="ZQUERY_TEST_ALP_CDS.ODataQueryAdditionalMetadata"/>
+
+</EntityContainer>
+
+
+-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZQUERY_TEST_ALP_CDS.ZQUERY_TEST_ALPType/EstimatedShippingCostCurrency">
+
+
+-<Annotation Qualifier="MasterData" Term="Common.ValueList">
+
+
+-<Record>
+
+<PropertyValue String="Currency ( Master Data )" Property="Label"/>
+
+<PropertyValue String="EstimatedShippingCostCurrency" Property="CollectionPath"/>
+
+<PropertyValue Property="SearchSupported" Bool="false"/>
+
+
+-<PropertyValue Property="Parameters">
+
+
+-<Collection>
+
+
+-<Record Type="Common.ValueListParameterInOut">
+
+<PropertyValue Property="LocalDataProperty" PropertyPath="EstimatedShippingCostCurrency"/>
+
+<PropertyValue String="EstimatedShippingCostCurrency_ID" Property="ValueListProperty"/>
+
+</Record>
+
+</Collection>
+
+</PropertyValue>
+
+</Record>
+
+</Annotation>
+
+</Annotations>
+
+
+-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZQUERY_TEST_ALP_CDS.ZQUERY_TEST_ALPType/STONumber">
+
+
+-<Annotation Qualifier="MasterData" Term="Common.ValueList">
+
+
+-<Record>
+
+<PropertyValue String="Purchasing Document ( Master Data )" Property="Label"/>
+
+<PropertyValue String="STONumber" Property="CollectionPath"/>
+
+<PropertyValue Property="SearchSupported" Bool="false"/>
+
+
+-<PropertyValue Property="Parameters">
+
+
+-<Collection>
+
+
+-<Record Type="Common.ValueListParameterInOut">
+
+<PropertyValue Property="LocalDataProperty" PropertyPath="STONumber"/>
+
+<PropertyValue String="STONumber_ID" Property="ValueListProperty"/>
+
+</Record>
+
+</Collection>
+
+</PropertyValue>
+
+</Record>
+
+</Annotation>
+
+</Annotations>
+
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://sapdfiori74.dev7.gcp.sapcloud.goog:8000/sap/opu/odata/sap/ZQUERY_TEST_ALP_CDS/$metadata" rel="self"/>
+
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://sapdfiori74.dev7.gcp.sapcloud.goog:8000/sap/opu/odata/sap/ZQUERY_TEST_ALP_CDS/$metadata" rel="latest-version"/>
+
+</Schema>
+
+</edmx:DataServices>
+
+</edmx:Edmx>
